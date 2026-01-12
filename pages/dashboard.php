@@ -10,7 +10,12 @@ $departements = $pdo->query("SELECT COUNT(*) as total FROM departements")->fetch
 $formations = $pdo->query("SELECT COUNT(*) as total FROM formations")->fetch()['total'];
 $professeurs = $pdo->query("SELECT COUNT(*) as total FROM professeurs")->fetch()['total'];
 $etudiants = $pdo->query("SELECT COUNT(*) as total FROM etudiants")->fetch()['total'];
+
+// Get current page for navbar active state
+$currentPage = basename($_SERVER['PHP_SELF']);
 ?>
+
+<?php include __DIR__ . '/../includes/navbar.php'; ?>
 
 <div class="container mt-4">
     <div class="row g-4">

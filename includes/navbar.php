@@ -28,15 +28,9 @@ $user = $_SESSION['user'] ?? null;
 
                 <?php if ($user && $user['role'] === 'admin'): ?>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-primary btn-sm px-3 rounded-pill <?= strpos($currentPage, 'departements') !== false ? 'active' : ''; ?>"
-                            href="/exams-planning/pages/departements/index.php">
-                            <i class="bi bi-building me-1"></i>Departements
-                        </a>
-                    </li>
-                    <li class="nav-item mx-1">
-                        <a class="nav-link btn btn-outline-primary btn-sm px-3 rounded-pill <?= strpos($currentPage, 'formations') !== false ? 'active' : ''; ?>"
-                            href="/exams-planning/pages/formations/index.php">
-                            <i class="bi bi-journal-text me-1"></i>Formations
+                        <a class="nav-link btn btn-outline-primary btn-sm px-3 rounded-pill <?= strpos($currentPage, 'dashboard') !== false ? 'active' : ''; ?>"
+                            href="/exams-planning/pages/dashboard.php">
+                            <i class="bi bi-speedometer2 me-1"></i> Dashboard
                         </a>
                     </li>
                     <li class="nav-item mx-1">
