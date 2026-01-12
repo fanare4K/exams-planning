@@ -1,5 +1,31 @@
 <?php
-session_start(); // Always start session first
+require_once 'includes/auth.php';
+
+// Ensure user is logged in
+requireLogin();
+
+$page = $_GET['page'] ?? 'dashboard';
+$valid_pages = [
+    'dashboard',
+    'departements',
+    'formations',
+    'professeurs',
+    'modules',
+    'etudiants',
+    'inscriptions',
+    'lieux',
+    'sessions',
+    'jours',
+    'examens',
+    'surveillances',
+    'conflits',
+    'profile'
+];
+
+// Only include valid pages
+$content_page = in_array($page, $valid_pages) && is_file("pages/$page/index.php")
+    ? "pages/$page/index.php"
+    : "pages/dashboard.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,35 +44,7 @@ session_start(); // Always start session first
     <?php include 'includes/navbar.php'; ?>
 
     <main class="container mt-4">
-        <?php
-        if (!isset($_SESSION['user_id'])) {
-            include 'login.php';
-        } else {
-            $page = $_GET['page'] ?? 'dashboard';
-            $valid_pages = [
-                'dashboard',
-                'departements',
-                'formations',
-                'professeurs',
-                'modules',
-                'etudiants',
-                'inscriptions',
-                'lieux',
-                'sessions',
-                'jours',
-                'examens',
-                'surveillances',
-                'conflits',
-                'profile'
-            ];
-
-            if (in_array($page, $valid_pages) && is_file("pages/$page/index.php")) {
-                include "pages/$page/index.php";
-            } else {
-                include 'pages/dashboard.php';
-            }
-        }
-        ?>
+        <?php include $content_page; ?>
     </main>
 
     <?php include 'includes/footer.php'; ?>
